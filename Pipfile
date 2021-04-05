@@ -8,6 +8,7 @@ fastapi = "*"
 requests = "*"
 uvicorn = {extras = ["standard"], version = "*"}
 pydantic = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
