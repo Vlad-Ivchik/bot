@@ -1,1 +1,1 @@
-web: make run-prod $PORT
+web: python -m http.server $PORT
