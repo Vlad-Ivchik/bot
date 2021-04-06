@@ -9,8 +9,8 @@ client = TestClient(app)
 
 load_dotenv(find_dotenv())
 
-bot_token = os.environ.get("BOT_TOKEN")
-pythonpath = os.environ.get("PYTHONPATH")
+bot_token = os.getenv("BOT_TOKEN")
+pythonpath = os.getenv("PYTHONPATH")
 
 
 @pytest.mark.functional
