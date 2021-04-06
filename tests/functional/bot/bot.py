@@ -12,6 +12,7 @@ load_dotenv(find_dotenv())
 bot_token = os.environ.get("BOT_TOKEN")
 pythonpath = os.environ.get("PYTHONPATH")
 
+
 @pytest.mark.functional
 def test_bot():
     response = client.get("/config")
