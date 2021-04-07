@@ -7,7 +7,7 @@ from asgi import app
 
 client = TestClient(app)
 
-load_dotenv(find_dotenv())
+load_dotenv()
 
 bot_token = os.getenv("BOT_TOKEN")
 pythonpath = os.getenv("PYTHONPATH")

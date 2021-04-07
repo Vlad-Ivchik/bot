@@ -6,7 +6,7 @@ from fastapi import FastAPI
 from pydantic import Field
 from pydantic.main import BaseModel
 
-load_dotenv(find_dotenv())
+load_dotenv()
 app = FastAPI()
 
 
