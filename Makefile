@@ -7,7 +7,7 @@ format:
 .PHONY: run-prod
 run-prod:
 	uvicorn \
-		z43bot.asgi:app \
+		bot.asgi:app \
 		--host 0.0.0.0 \
 		--lifespan off \
 		--port $(PORT) \

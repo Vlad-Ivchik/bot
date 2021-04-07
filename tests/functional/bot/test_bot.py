@@ -1,9 +1,11 @@
 import os
+
 import pytest
-from dotenv import load_dotenv, find_dotenv
+from dotenv import load_dotenv
 from starlette import status
 from starlette.testclient import TestClient
-from asgi import app
+
+from bot.asgi import app
 
 client = TestClient(app)
 
@@ -15,7 +17,7 @@ pythonpath = os.getenv("PYTHONPATH")
 
 @pytest.mark.functional
 def test_bot():
-    response = client.get("/config")
+    response = client.get("/settings/")
     assert response.status_code == status.HTTP_200_OK
     payload = response.json()
     data = {"bot_token": bot_token, "pythonpath": pythonpath}
