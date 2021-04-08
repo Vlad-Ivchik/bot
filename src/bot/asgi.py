@@ -1,8 +1,6 @@
 from dotenv import load_dotenv
-from fastapi import Body
 from fastapi import FastAPI
 
-from bot import telegram
 from bot.config import settings
 from bot.util import debug
 
@@ -15,24 +13,3 @@ app = FastAPI()
 async def handle_settings():
     debug(settings)
     return settings
-
-
-@app.post("/webhook/")
-async def tg_webhook(update: telegram.Update):
-    debug(update)
-    try:
-        text = update.message.text
-        reply = text.capitalize() if isinstance(text, str) else "что это?"
-
-        await telegram.send_message(
-            chat_id=update.message.chat.id,
-            reply_to_message_id=update.message.message_id,
-            text=reply,
-        )
-    except Exception as err:  # pylint: disable=broad-except
-        import traceback  # pylint: disable=import-outside-toplevel
-
-        debug(err)
-        debug(traceback.format_exc())
-
-    return {"ok": True}
