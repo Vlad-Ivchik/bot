@@ -1,4 +1,4 @@
-[tool.black]
+tool.black]
 line-length = 79
 target-version = ["py38"]
 exclude = """
@@ -42,6 +42,21 @@ max_line_length = 79
 [tool.pylint.REPORTS]
 output_format = "colorized"
 
+
+[tool.coverage.run]
+branch = true
+source = [
+    "./src/z43bot/",
+]
+
+
+[tool.coverage.html]
+directory = "./tests/coverage_html_report/"
+
+
+[tool.coverage.report]
+#fail_under = 90
+sort = "Cover"
 
 [tool.coverage.run]
 branch = true

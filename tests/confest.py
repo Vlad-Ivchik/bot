@@ -1,5 +1,4 @@
 import asyncio
-
 import aiohttp
 import pytest
 
@@ -15,3 +14,4 @@ def event_loop():
 async def http_session():
     async with aiohttp.ClientSession() as session:
         yield session
+

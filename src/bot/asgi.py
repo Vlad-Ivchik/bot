@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 from fastapi import FastAPI
+
 from bot.config import settings
 from bot.util import debug
 
