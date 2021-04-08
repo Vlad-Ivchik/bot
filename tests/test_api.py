@@ -1,7 +1,6 @@
 import pytest
 from dotenv import load_dotenv
 from starlette import status
-
 from bot.config import settings
 
 load_dotenv()
