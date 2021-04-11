@@ -7,7 +7,7 @@ format:
 .PHONY: run-prod
 run-prod:
 	uvicorn \
-		bot.asgi:app \
+		z43bot.asgi:app \
 		--host 0.0.0.0 \
 		--lifespan off \
 		--port $(PORT) \
@@ -34,7 +34,7 @@ run-tests:
 
 .PHONY: check-types
 check-types:
-	mypy ./src/
+	mypy --package z43bot
 
 
 .PHONY: check-imports
@@ -49,5 +49,9 @@ check-code-style:
 
 .PHONY: run-static-code-analysis
 run-static-code-analysis:
-	flake8 ./src/ ./tests/
-	pylint ./src/ ./tests/
+	flake8 \
+		--show-source \
+		--max-line-length=79 \
+		./src/ \
+
+	pylint z43bot
