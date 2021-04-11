@@ -1,8 +1,9 @@
-import aiohttp
 from dotenv import load_dotenv
+from fastapi import Body
 from fastapi import FastAPI
+
+from bot import telegram
 from bot.config import settings
-from bot.schema import Update, MessageReply
 from bot.util import debug
 
 load_dotenv()
@@ -17,27 +18,21 @@ async def handle_settings():
 
 
 @app.post("/webhook/")
-async def tg_webhook(update: Update):
+async def tg_webhook(update: telegram.Update):
+    debug(update)
     try:
+        text = update.message.text
+        reply = text.capitalize() if isinstance(text, str) else "что это?"
 
-        #.................
-
-        await respond_to_td(
+        await telegram.send_message(
             chat_id=update.message.chat.id,
-            text=update.message.text.capitalize()
+            reply_to_message_id=update.message.message_id,
+            text=reply,
         )
-    finally:
-        return {"ok": True}
+    except Exception as err:  # pylint: disable=broad-except
+        import traceback  # pylint: disable=import-outside-toplevel
 
+        debug(err)
+        debug(traceback.format_exc())
 
-async def respond_to_td(chat_id: int, text: str):
-
-    reply = MessageReply(
-        chat_id=chat_id,
-        text=text,
-    )
-    async with aiohttp.ClientSession() as sesss:
-        url = f"https://api.telegram.org/bot{settings.bot_token}/sendMessage"
-        async with sesss.post(url, json=reply.dict()) as resp:
-            payload = await resp.json()
-            debug(resp, payload)
+    return {"ok": True}
