@@ -54,4 +54,4 @@ run-static-code-analysis:
 		--max-line-length=79 \
 		./src/ \
 
-	pylint z43bot
+	pylint bot
